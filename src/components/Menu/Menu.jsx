@@ -24,6 +24,7 @@ const menuStyles = () => ({
 class Menu extends Component {
     menuList = [
         {name: "A", label: "Мероприятия", icon: <MenuIcon />},
+        {name: "B", label: "Посты", icon: <MenuIcon />},
     ];
     constructor(props) {
         super(props);

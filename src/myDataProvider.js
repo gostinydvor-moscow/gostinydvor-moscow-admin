@@ -1,7 +1,7 @@
 import { fetchUtils } from "react-admin";
 import restServerProvider from 'ra-data-json-server';
 
-export const servicesHost = 'http://localhost:5000/api';
+export const servicesHost = 'https://gdm.msk.ru:5000/api';
 // http://localhost:5000/api
 // https://gdm.msk.ru:5000
 
@@ -26,6 +26,16 @@ const myDataProfider = {
 				formData.append("image", params.data[key].rawFile);
 			} else if (key === "about") {
 				formData.append("about", JSON.stringify(params.data[key]));
+			} else if (key === "posts") {
+				formData.append("posts", JSON.stringify(params.data[key]));
+			} else if (key === "content") {
+				formData.append('content', JSON.stringify(params.data[key]));
+
+				for (let key2 in params.data[key]) {
+					if (params.data[key][key2].imageAdmin) {
+						formData.append('image-content-block' + parseFloat(parseInt(key2) + 1), params.data[key][key2].imageAdmin.rawFile);
+					}
+				}
 			} else {
 				formData.append(key, params.data[key]);
 			}
@@ -52,8 +62,18 @@ const myDataProfider = {
 		for (let key in params.data) {
 			if (key === "imageAdmin" && params.data[key].rawFile) {
 				formData.append("image", params.data[key].rawFile);
+			} else if (key === "content") {
+				formData.append('content', JSON.stringify(params.data[key]));
+
+				for (let key2 in params.data[key]) {
+					if (params.data[key][key2].imageAdmin) {
+						formData.append('image-content-block' + parseFloat(parseInt(key2) + 1), params.data[key][key2].imageAdmin.rawFile);
+					}
+				}
 			} else if (key === "about") {
 				formData.append("about", JSON.stringify(params.data[key]));
+			} else if (key === "posts") {
+				formData.append("posts", JSON.stringify(params.data[key]));
 			} else {
 				formData.append(key, params.data[key]);
 			}

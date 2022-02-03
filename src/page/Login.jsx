@@ -38,7 +38,7 @@ const Login = () => {
         <ThemeProvider theme={createMuiTheme(defaultTheme)}>
             <form onSubmit={submit} style={style}>
                 <img
-                    src="https://gdm.msk.ru:5000/all/logo.png"
+                    src="https://gdm.msk.ru:5000/all/logo.svg"
                     alt="Гостиный двор Москва"
                     style={{
                         width: "250px",

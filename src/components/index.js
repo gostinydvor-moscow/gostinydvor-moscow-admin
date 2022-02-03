@@ -13,3 +13,8 @@ export { default as EventEdit } from './Events/EventEdit';
 export { default as EventsSliderList } from './EventsSlider/EventsSliderList';
 export { default as EventsSliderCreate } from './EventsSlider/EventsSliderCreate';
 export { default as EventsSliderEdit } from './EventsSlider/EventsSliderEdit';
+
+// Posts
+export { default as PostList } from './Posts/PostList';
+export { default as PostCreate } from './Posts/PostCreate';
+export { default as PostEdit } from './Posts/PostEdit';

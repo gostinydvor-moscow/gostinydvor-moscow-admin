@@ -1,5 +1,7 @@
 import React from "react";
 
+import myDataProfider from "../.././myDataProvider";
+
 import {
     Edit,
     SimpleForm,
@@ -7,16 +9,28 @@ import {
     ImageInput,
     ArrayInput,
     SimpleFormIterator,
+    SelectInput,
     required,
 } from "react-admin";
-
-import RichTextInput from "ra-input-rich-text";
 
 import {PreviewImage} from ".././";
 
 import {defaultStyle} from "../../style";
 
 const EventEdit = (props) => {
+    const [posts, setPosts] = React.useState([]);
+
+    React.useEffect(() => {
+        myDataProfider
+            .getList("postsAll", {
+                pagination: {page: 1},
+                sort: {order: "ASC"},
+            })
+            .then(({data}) => {
+                setPosts(data);
+            });
+	}, []);
+	
     return (
         <Edit {...props}>
             <SimpleForm redirect={false}>
@@ -26,11 +40,12 @@ const EventEdit = (props) => {
                     validate={[required()]}
                     style={defaultStyle}
                 />
-                <RichTextInput
+                <TextInput
                     source="description"
                     label="Описание"
                     validate={[required()]}
                     style={defaultStyle}
+                    multiline
                 />
                 <ArrayInput
                     source="about"
@@ -39,14 +54,35 @@ const EventEdit = (props) => {
                     validate={[required()]}
                 >
                     <SimpleFormIterator>
-                        <RichTextInput
+                        <TextInput
                             source="description"
                             label="Описание"
                             validate={[required()]}
                             style={defaultStyle}
+                            multiline
                         />
                     </SimpleFormIterator>
                 </ArrayInput>
+                {posts.length ? (
+                    <ArrayInput
+                        source="posts"
+                        label="Участники"
+                        style={defaultStyle}
+                        validate={[required()]}
+                    >
+                        <SimpleFormIterator>
+                            <SelectInput
+                                label="Пост"
+                                source="postId"
+                                choices={posts}
+                                optionValue="id"
+                                optionText="title"
+                                validate={[required()]}
+                                style={defaultStyle}
+                            />
+                        </SimpleFormIterator>
+                    </ArrayInput>
+                ) : null}
                 <ImageInput
                     source="imageAdmin"
                     label="Изображение (максимальный размер 2МБ)"
