@@ -58,7 +58,6 @@ const myDataProfider = {
 	update: (resource, params) => {
 		let formData = new FormData();
 
-
 		for (let key in params.data) {
 			if (key === "imageAdmin" && params.data[key].rawFile) {
 				formData.append("image", params.data[key].rawFile);

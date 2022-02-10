@@ -12,6 +12,8 @@ import {
     required,
 } from "react-admin";
 
+import RichTextInput from "ra-input-rich-text";
+
 import {defaultStyle, arrayInputStyle} from "../../style";
 
 const PostCreate = (props) => {
@@ -53,15 +55,13 @@ const PostCreate = (props) => {
                         <TextInput
                             source="title"
                             label="Заголовок блока"
-                            validate={[required()]}
                             style={arrayInputStyle}
                         />
-                        <TextInput
+                        <RichTextInput
                             label="Описание"
                             source="description"
                             validate={[required()]}
                             style={arrayInputStyle}
-                            multiline
                         />
                         <ImageInput
                             source="imageAdmin"

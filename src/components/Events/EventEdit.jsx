@@ -29,8 +29,8 @@ const EventEdit = (props) => {
             .then(({data}) => {
                 setPosts(data);
             });
-	}, []);
-	
+    }, []);
+
     return (
         <Edit {...props}>
             <SimpleForm redirect={false}>

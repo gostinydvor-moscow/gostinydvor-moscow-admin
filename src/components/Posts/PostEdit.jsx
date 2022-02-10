@@ -11,6 +11,8 @@ import {
     required,
 } from "react-admin";
 
+import RichTextInput from "ra-input-rich-text";
+
 import {PreviewImage} from ".././";
 
 import {defaultStyle, arrayInputStyle} from "../../style";
@@ -54,15 +56,13 @@ const PostsEdit = (props) => {
                         <TextInput
                             source="title"
                             label="Заголовок блока"
-                            validate={[required()]}
                             style={arrayInputStyle}
                         />
-                        <TextInput
+                        <RichTextInput
                             label="Описание"
                             source="description"
                             validate={[required()]}
                             style={arrayInputStyle}
-                            multiline
                         />
                         <ImageInput
                             source="imageAdmin"
@@ -70,7 +70,6 @@ const PostsEdit = (props) => {
                             maxSize="2000000"
                             accept="image/*"
                             placeholder={<p>Перетащите файл сюда</p>}
-                            validate={[required()]}
                             style={defaultStyle}
                         >
                             <PreviewImage source="src" />
