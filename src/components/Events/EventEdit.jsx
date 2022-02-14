@@ -68,7 +68,6 @@ const EventEdit = (props) => {
                         source="posts"
                         label="Участники"
                         style={defaultStyle}
-                        validate={[required()]}
                     >
                         <SimpleFormIterator>
                             <SelectInput
